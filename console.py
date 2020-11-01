@@ -8,6 +8,12 @@ command interpreter
 import cmd
 from models import storage
 from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
@@ -15,6 +21,7 @@ class HBNBCommand(cmd.Cmd):
     The command class
     """
     prompt = "(hbnb)"
+    classes = ["BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]
 
     def do_exit(self, arg):
         """
@@ -35,10 +42,10 @@ class HBNBCommand(cmd.Cmd):
         """
         if len(arg) == 0:
             print("** class name missing **")
-        elif arg != "BaseModel":
+        elif arg not in self.classes:
             print("** class doesn't exist **")
         else:
-            obj = BaseModel()
+            obj = eval(arg)()
             obj.save()
             print(obj.id)
 
@@ -50,7 +57,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         coms = tuple(arg.split())
-        if coms[0] != "BaseModel":
+        if coms[0] not in self.classes:
             print("** class doesn't exist **")
         elif len(coms) < 2:
             print("** instance id missing **")
@@ -69,7 +76,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         coms = tuple(arg.split())
-        if coms[0] != "BaseModel":
+        if coms[0] not in self.classes:
             print("** class doesn't exist **")
         elif len(coms) < 2:
             print("** instance id missing **")
@@ -92,7 +99,7 @@ class HBNBCommand(cmd.Cmd):
             print(l)
         else:
             coms = tuple(arg.split())
-            if coms[0] == "BaseModel":
+            if coms[0] not in self.classes:
                 for k, v in storage.all().items():
                     if coms[0] in k:
                         l.append(str(v))
@@ -108,7 +115,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         coms = tuple(arg.split())
-        if coms[0] != "BaseModel":
+        if coms[0] not in self.classes:
             print("** class doesn't exist **")
         elif len(coms) < 2:
             print("** instance id missing **")
