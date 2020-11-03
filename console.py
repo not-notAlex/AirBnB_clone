@@ -4,7 +4,6 @@ command interpreter
 """
 
 
-
 import cmd
 from models import storage
 from models.base_model import BaseModel
@@ -21,7 +20,7 @@ class HBNBCommand(cmd.Cmd):
     The command class
     """
     prompt = "(hbnb)"
-    classes = ["BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]
+    cls = ["BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]
 
     def do_exit(self, arg):
         """
@@ -42,7 +41,7 @@ class HBNBCommand(cmd.Cmd):
         """
         if len(arg) == 0:
             print("** class name missing **")
-        elif arg not in self.classes:
+        elif arg not in self.cls:
             print("** class doesn't exist **")
         else:
             obj = eval(arg)()
@@ -57,7 +56,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         coms = tuple(arg.split())
-        if coms[0] not in self.classes:
+        if coms[0] not in self.cls:
             print("** class doesn't exist **")
         elif len(coms) < 2:
             print("** instance id missing **")
@@ -76,7 +75,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         coms = tuple(arg.split())
-        if coms[0] not in self.classes:
+        if coms[0] not in self.cls:
             print("** class doesn't exist **")
         elif len(coms) < 2:
             print("** instance id missing **")
@@ -99,7 +98,7 @@ class HBNBCommand(cmd.Cmd):
             print(l)
         else:
             coms = tuple(arg.split())
-            if coms[0] not in self.classes:
+            if coms[0] in self.cls:
                 for k, v in storage.all().items():
                     if coms[0] in k:
                         l.append(str(v))
@@ -115,7 +114,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         coms = tuple(arg.split())
-        if coms[0] not in self.classes:
+        if coms[0] not in self.cls:
             print("** class doesn't exist **")
         elif len(coms) < 2:
             print("** instance id missing **")

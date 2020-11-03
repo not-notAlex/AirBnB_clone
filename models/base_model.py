@@ -18,11 +18,12 @@ class BaseModel():
         constructor
         """
         if kwargs:
+            spt = datetime.strptime
             for key, val in kwargs.items():
                 if key == "created_at":
-                    self.created_at = datetime.strptime(val, "%Y-%m-%dT%H:%M:%S.%f")
+                    self.created_at = spt(val, "%Y-%m-%dT%H:%M:%S.%f")
                 elif key == "updated_at":
-                    self.created_at = datetime.strptime(val, "%Y-%m-%dT%H:%M:%S.%f")
+                    self.updated_at = spt(val, "%Y-%m-%dT%H:%M:%S.%f")
                 elif key == "__class__":
                     pass
                 else:

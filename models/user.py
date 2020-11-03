@@ -4,9 +4,7 @@ module for user class
 """
 
 
-
 from models.base_model import BaseModel
-
 
 
 class User(BaseModel):
