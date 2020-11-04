@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-initializer
+initializer for file storage
 """
 from models.engine.file_storage import FileStorage
 
