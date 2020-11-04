@@ -35,6 +35,12 @@ class HBNBCommand(cmd.Cmd):
         print()
         return True
 
+    def emptyline(self):
+        """
+        stops console from repeating previous line
+        """
+        pass
+
     def do_create(self, arg):
         """
         creates an object
