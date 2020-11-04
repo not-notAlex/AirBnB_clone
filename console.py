@@ -22,7 +22,7 @@ class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb)"
     cls = ["BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]
 
-    def do_exit(self, arg):
+    def do_quit(self, arg):
         """
         exits the console
         """
