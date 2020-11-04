@@ -11,11 +11,11 @@ import models
 
 class BaseModel():
     """
-    The base model
+    The base model class
     """
     def __init__(self, *args, **kwargs):
         """
-        constructor
+        constructor for the object
         """
         if kwargs:
             spt = datetime.strptime
@@ -36,7 +36,7 @@ class BaseModel():
 
     def __str__(self):
         """
-        prints: [<class name>] (<self.id>) <self.__dict__>
+        prints: string representation of object
         """
         output = "[" + self.__class__.__name__ + "] ("
         output += str(self.id) + ") " + str(self.__dict__)
@@ -44,7 +44,7 @@ class BaseModel():
 
     def save(self):
         """
-        updates the updated time
+        updates the updated time and stores in file
         """
         self.updated_at = datetime.now()
         models.storage.save()
