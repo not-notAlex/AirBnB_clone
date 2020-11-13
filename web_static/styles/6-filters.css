@@ -65,6 +65,7 @@ section.filters button:hover {
     border-radius: 4px;
     text-align: left;
     margin-top:20px;
+    position: relative;
 }
 
 .popover h2 {
